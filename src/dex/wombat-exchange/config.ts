@@ -31,6 +31,11 @@ export const WombatExchangeConfig: DexConfigMap<DexParams> = {
           address: '0x083640c5dBD5a8dDc30100FB09B45901e12f9f55',
           poolLabel: PoolLabels.mWOM,
         },
+        {
+          name: 'FACTORY_STABLES',
+          address: '0x48f6A8a0158031BaF8ce3e45344518f1e69f2A14',
+          poolLabel: PoolLabels.FACTORY_STABLES,
+        },
       ],
     },
   },

@@ -14,15 +14,24 @@ import * as CALLDATA_GAS_COST from '../../calldata-gas-cost';
 import { getDexKeysWithNetwork } from '../../utils';
 import { IDex } from '../../dex/idex';
 import { IDexHelper } from '../../dex-helper/idex-helper';
-import { WombatExchangeData } from './types';
+import { DexParams, WombatExchangeData } from './types';
 import { SimpleExchange } from '../simple-exchange';
 import { WombatExchangeConfig, Adapters } from './config';
 import { WombatExchangeEventPool } from './wombat-exchange-pool';
+import { Interface } from '@ethersproject/abi';
+import ERC20ABI from '../../abi/erc20.json';
+import PoolABI from '../../abi/wombat-exchange/Pool.json';
+import AssetABI from '../../abi/wombat-exchange/Asset.json';
 
 export class WombatExchange
   extends SimpleExchange
   implements IDex<WombatExchangeData>
 {
+  static readonly erc20Interface = new Interface(ERC20ABI);
+  static readonly poolInterface = new Interface(PoolABI);
+  static readonly assetInterface = new Interface(AssetABI);
+
+  protected config: DexParams;
   protected eventPools: WombatExchangeEventPool;
 
   readonly hasConstantPriceLargeAmounts = false;
@@ -44,6 +53,7 @@ export class WombatExchange
   ) {
     super(dexHelper, dexKey);
     this.logger = dexHelper.getLogger(dexKey);
+    this.config = WombatExchangeConfig[dexKey][network];
     this.eventPools = new WombatExchangeEventPool(
       dexKey,
       network,

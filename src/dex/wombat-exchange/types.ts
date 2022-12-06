@@ -7,6 +7,7 @@ export enum PoolLabels {
   qWOM = 'qWOM',
   mWOM = 'mWOM',
   wmxWOM = 'wmxWOM',
+  FACTORY_STABLES = 'FACTORY_STABLES',
 }
 
 export type PoolState = {
@@ -30,4 +31,22 @@ export type DexParams = {
     name: string;
     poolLabel: PoolLabels;
   }[];
+};
+
+export type WombatExchangeConfigInfo = {
+  poolAddresses: Address[];
+  pools: {
+    [poolAddress: string]: WombatExchangeConfigInfo;
+  };
+};
+
+export type WombatExchangePoolConfigInfo = {
+  tokenAddresses: Address[];
+  tokens: {
+    [tokenAddress: string]: {
+      tokenSymbol: string;
+      tokenDecimals: number;
+      assetAddress: Address;
+    };
+  };
 };

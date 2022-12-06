@@ -1,0 +1,27 @@
+[
+  {
+    "inputs": [],
+    "name": "exchangeRate",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "totalWei",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "poolTokenSupply",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ExchangeRateData",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]
